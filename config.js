@@ -1,6 +1,7 @@
 const {
   makeRawLogExtractors,
 } = require('spock-etl/lib/core/processors/extractors/instances/rawEventDataExtractor')
+require('dotenv-flow').config()
 
 const mkrTransformer = require('./transformers/MkrTransformer')
 const mkrBalanceTransformer = require('./transformers/MkrBalanceTransformer')
@@ -59,7 +60,7 @@ const VOTE_DELEGATE_FACTORY_GOERLI_ADDRESS =
   '0xE2d249AE3c156b132C40D07bd4d34e73c1712947'
 
 const goerli = {
-  startingBlock: 5273000,
+  startingBlock: process.env.GENESIS,
   extractors: [
     ...makeRawLogExtractors([
       BATCH_VOTING_CONTRACT_GOERLI_ADDRESS,
@@ -97,7 +98,7 @@ const goerli = {
 }
 
 const kovan = {
-  startingBlock: 5216304,
+  startingBlock: parseInt(process.env.GENESIS),
   extractors: [
     ...makeRawLogExtractors([
       VOTING_CONTRACT_KOVAN_ADDRESS,
@@ -140,7 +141,7 @@ const kovan = {
 }
 
 const mainnet = {
-  startingBlock: 15589057,
+  startingBlock: parseInt(process.env.GENESIS),
   extractors: [
     ...makeRawLogExtractors([
       VOTING_CONTRACT_ADDRESS,
@@ -192,7 +193,7 @@ if (process.env.VL_CHAIN_NAME === 'mainnet') {
   console.log('Using kovan config')
   config = kovan
 } else {
-  console.log('Using goerli config')
+  console.log(`Using goerli config with GENESIS : ${process.env.GENESIS}`)
   config = goerli
 }
 
