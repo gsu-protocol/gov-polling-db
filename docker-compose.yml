@@ -1,14 +1,58 @@
 version: "3.2"
 services:
-  postgres:
+  # Building Image
+  web:
+    build: .
+    image: governance-cache
+
+  CACHE_DB:
     image: postgres:10.6
-    container_name: postgres-vulcan2x
+    container_name: governance-cache-db
     command: ["postgres", "-c", "log_min_duration_statement=1000"]
     environment:
       - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=pass
       - POSTGRES_HOST=localhost
       - POSTGRES_PORT=5432
-      - POSTGRES_DB=database
+      - POSTGRES_DB=db
     ports:
-      - "5433:5432"
+      - "7864:5432"
+    networks:
+      - governance-cache-network
+    restart: unless-stopped
+    depends_on:
+      - web
+
+  # Setting up ETL service
+  CACHE_ETL:
+    container_name: governance-cache-etl
+    image: governance-cache
+    env_file:
+      - .env
+    restart: unless-stopped
+    command: bash -c "yarn migrate && yarn start-etl"
+    networks:
+      - governance-cache-network
+    depends_on:
+      - CACHE_DB
+
+  # Setting up API service
+  CACHE_API:
+    container_name: governance-cache-api
+    image: governance-cache
+    command: bash -c "yarn start-api"
+    ports:
+       - "7865:3001"
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - governance-cache-network
+    depends_on:
+      - CACHE_ETL
+
+networks:
+  governance-cache-network:
+      name: governance-cache-network
+      driver: bridge
+

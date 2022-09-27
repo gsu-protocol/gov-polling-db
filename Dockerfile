@@ -1,6 +1,6 @@
 FROM node:10
 
-EXPOSE 3001
+# EXPOSE 3001
 
 WORKDIR /app
 COPY . /app
