@@ -40,7 +40,7 @@ services:
   CACHE_API:
     container_name: governance-cache-api
     image: governance-cache
-    command: bash -c "yarn start-api"
+    command: bash -c "yarn migrate && yarn start-api"
     ports:
        - "7865:3001"
     env_file:
