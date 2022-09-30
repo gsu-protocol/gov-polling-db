@@ -60,7 +60,7 @@ const VOTE_DELEGATE_FACTORY_GOERLI_ADDRESS =
   '0xE2d249AE3c156b132C40D07bd4d34e73c1712947'
 
 const goerli = {
-  startingBlock: process.env.GENESIS,
+  startingBlock: parseInt(process.env.GENESIS),
   extractors: [
     ...makeRawLogExtractors([
       BATCH_VOTING_CONTRACT_GOERLI_ADDRESS,
