@@ -20,16 +20,13 @@ const authorizedCreators = process.env.AUTHORIZED_CREATORS
 
 // TODO
 module.exports.VOTING_CONTRACT_GOERLI_ADDRESS =
-  '0xdbE5d00b2D8C13a77Fb03Ee50C87317dbC1B15fb';
-module.exports.VOTING_CONTRACT_KOVAN_ADDRESS =
-  '0x518a0702701BF98b5242E73b2368ae07562BEEA3';
+  '0x9C2BF9875E41523139cfEC07e35Ef5Be2c3942c3';
 module.exports.VOTING_CONTRACT_ADDRESS =
   '0xF9be8F0945acDdeeDaA64DFCA5Fe9629D0CF8E5D';
 
 module.exports.default = (address) => ({
   name:
     address === module.exports.VOTING_CONTRACT_ADDRESS ||
-    address === module.exports.VOTING_CONTRACT_KOVAN_ADDRESS ||
     address === module.exports.VOTING_CONTRACT_GOERLI_ADDRESS
       ? `Polling_Transformer`
       : `Polling_Transformer_${address}`,
@@ -42,8 +39,6 @@ module.exports.default = (address) => ({
 const handlers = {
   async PollCreated(services, info) {
     if (
-      info.event.address.toLowerCase() !==
-        module.exports.VOTING_CONTRACT_KOVAN_ADDRESS.toLowerCase() &&
       info.event.address.toLowerCase() !==
         module.exports.VOTING_CONTRACT_ADDRESS.toLowerCase() &&
       // goerli uses batch polling contract for creating polls
@@ -99,8 +94,6 @@ const handlers = {
 
   async PollWithdrawn(services, info) {
     if (
-      info.event.address.toLowerCase() !==
-        module.exports.VOTING_CONTRACT_KOVAN_ADDRESS.toLowerCase() &&
       info.event.address.toLowerCase() !==
         module.exports.VOTING_CONTRACT_ADDRESS.toLowerCase() &&
       // goerli uses batch polling contract for withdrawing polls
