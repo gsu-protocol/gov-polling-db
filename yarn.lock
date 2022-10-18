@@ -1630,7 +1630,7 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-ethers@krzkaczor/ethers.js#kk/get-logs-multiple-address-build:
+"ethers@github:krzkaczor/ethers.js#kk/get-logs-multiple-address-build":
   version "4.0.37"
   resolved "https://codeload.github.com/krzkaczor/ethers.js/tar.gz/48c8dfad90b2c3699a122ff64b09e40a42880c7f"
   dependencies:
@@ -4785,10 +4785,10 @@ split@^1.0.0:
   dependencies:
     through "2"
 
-spock-etl@^0.0.59:
-  version "0.0.59"
-  resolved "https://registry.yarnpkg.com/spock-etl/-/spock-etl-0.0.59.tgz#903e9176230b843d3ca2c4e58ecc70bfe52f1623"
-  integrity sha512-iw8qTcmXi5CEjRWvOe/qv3dJnpHh2N0divNQD3ae26wVo/ORsZcT4QQuQjTQ3MPGYlzpQk1fnP05uEx3sJIK2Q==
+spock-etl@^0.0.63:
+  version "0.0.63"
+  resolved "https://registry.yarnpkg.com/spock-etl/-/spock-etl-0.0.63.tgz#b64f60260caa5698f539f67a18a6acdbec55497a"
+  integrity sha512-Vq2MiJ162PdPH9dbK86DXeu5BW4ynhZZdkWlKzaFQPEuMUW5ANUvGsA4sv0iYhQ3nj4odA9t3YCfDQwgy7KXWQ==
   dependencies:
     "@google-cloud/bigquery" "^3.0.0"
     "@sentry/node" "5.7.1"
@@ -4813,6 +4813,7 @@ spock-etl@^0.0.59:
     pretty-ms "^5.0.0"
     promise-retry "^1.1.1"
     serialize-error "^4.1.0"
+    ts-essentials "^4.0.0"
 
 sql-template-strings@^2.2.2:
   version "2.2.2"
@@ -5112,6 +5113,11 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
+
+ts-essentials@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-4.0.0.tgz#506c42b270bbd0465574b90416533175b09205ab"
+  integrity sha512-uQJX+SRY9mtbKU+g9kl5Fi7AEMofPCvHfJkQlaygpPmHPZrtgaBqbWFOYyiA47RhnSwwnXdepUJrgqUYxoUyhQ==
 
 tslib@^1.5.0, tslib@^1.9.3:
   version "1.10.0"
