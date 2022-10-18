@@ -1,0 +1,6 @@
+query uniswapV3MkrSupply($argMkrAddress: String!) {
+  token(id: $argMkrAddress) {
+    symbol
+    totalValueLocked
+  }
+}

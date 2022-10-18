@@ -1,0 +1,9 @@
+{
+  allDelegates {
+    nodes {
+      delegate
+      voteDelegate
+      blockTimestamp
+    }
+  }
+}

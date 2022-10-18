@@ -69,11 +69,12 @@ const goerli = {
   api: {
     whitelisting: {
       enabled: false,
+      whitelistedQueriesDir: "./queries",
     },
     responseCaching: {
       enabled: false,
       duration: '15 seconds',
-    },
+    }
   },
 }
 
