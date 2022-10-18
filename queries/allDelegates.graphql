@@ -1,5 +1,5 @@
-{
-  allDelegates {
+query allDelegates {
+    allDelegates {
     nodes {
       delegate
       voteDelegate
