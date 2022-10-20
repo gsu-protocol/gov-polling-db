@@ -1,14 +1,64 @@
 version: "3.2"
 services:
-  postgres:
+
+  # Building Image
+  gov-cache:
+    build: .
+    image: gov-cache
+
+  gov-cache-db:
     image: postgres:10.6
-    container_name: postgres-vulcan2x
-    command: ["postgres", "-c", "log_min_duration_statement=1000"]
+    container_name: gov-cache-db
+    command: [ "postgres", "-c", "log_min_duration_statement=1000" ]
+    restart: unless-stopped
+    ports:
+      - "7860:5432"
     environment:
       - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_HOST=localhost
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_HOST=gov-cache-db
       - POSTGRES_PORT=5432
-      - POSTGRES_DB=database
+      - POSTGRES_DB=db
+    networks:
+      - gov-cache-network
+    volumes:
+      - gov-cache-db-data:/var/lib/postgresql/data
+
+  # Setting up ETL service
+  gov-cache-etl:
+    image: gov-cache
+    container_name: gov-cache-etl
+    command: bash -c "yarn migrate && yarn start-etl"
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - gov-cache-network
+    depends_on:
+      - gov-cache-db
+
+  # Setting up API service
+  gov-cache-api:
+    image: gov-cache
+    container_name: gov-cache-api
+    command: bash -c "yarn migrate && yarn start-api"
+    restart: unless-stopped
     ports:
-      - "5433:5432"
+      - "7861:3001"
+    env_file:
+      - .env
+    networks:
+      - gov-cache-network
+    networks:
+      - gov-cache-network
+    depends_on:
+      - gov-cache-etl
+
+networks:
+  gov-cache-network:
+    name: gov-cache-network
+    driver: bridge
+
+volumes:
+  gov-cache-db-data:
+    name: gov-cache-db-data

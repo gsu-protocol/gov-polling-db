@@ -1,6 +1,7 @@
-FROM node:10
+FROM node:13.14.0-alpine
 
-EXPOSE 3001
+RUN apk update
+RUN apk add --no-cache bash
 
 WORKDIR /app
 COPY . /app

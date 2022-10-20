@@ -1,0 +1,8 @@
+query voteMkrWeightsAtTimeRankedChoice($argPollId: Int!, $argUnix: Int!) {
+  voteMkrWeightsAtTimeRankedChoice(argPollId: $argPollId, argUnix: $argUnix) {
+    nodes {
+      optionIdRaw
+      mkrSupport
+    }
+  }
+}
