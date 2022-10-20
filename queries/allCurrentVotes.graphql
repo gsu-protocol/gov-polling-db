@@ -1,0 +1,10 @@
+query allCurrentVotes($argAddress: String!) {
+  allCurrentVotes(argAddress: $argAddress) {
+    nodes {
+      pollId
+      optionId
+      optionIdRaw
+      blockTimestamp
+    }
+  }
+}
